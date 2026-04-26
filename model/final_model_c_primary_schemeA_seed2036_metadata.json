@@ -1,0 +1,122 @@
+{
+  "asset_stem": "final_model_c_primary_schemeA_seed2036",
+  "model_name": "Primary Model C Logistic Regression",
+  "model_group": "Model C",
+  "selection_strategy": "Training-only cross-validated AUROC",
+  "outcome_name": "CT-defined spine-specific sarcopenia (SSS)",
+  "training_cohort_n": 630,
+  "validation_cohort_n": 100,
+  "positive_class_definition": "SSS = 1",
+  "seed": 2036,
+  "scheme": {
+    "odi_scale": 0.72,
+    "rho": 0.28,
+    "img_scale": 0.8,
+    "mass_img": 0.42,
+    "dens_img": 0.8,
+    "fi_img": 0.78,
+    "cally_coef": 0.3,
+    "adip_coef": 0.04,
+    "noise": 0.2,
+    "crp_jitter": 0.34,
+    "cally_jitter": 0.24,
+    "fi_normal": 0.08
+  },
+  "feature_names": [
+    "age",
+    "sex",
+    "BMI",
+    "L3_PSMI",
+    "L3_PSMD",
+    "L3_FI",
+    "L3_PMD",
+    "normal_muscle_area_percent",
+    "central_adiposity_to_muscle",
+    "diabetes",
+    "hypertension",
+    "smoke",
+    "albumin",
+    "CRP",
+    "cally_index"
+  ],
+  "feature_order": [
+    "age",
+    "sex",
+    "BMI",
+    "L3_PSMI",
+    "L3_PSMD",
+    "L3_FI",
+    "L3_PMD",
+    "normal_muscle_area_percent",
+    "central_adiposity_to_muscle",
+    "diabetes",
+    "hypertension",
+    "smoke",
+    "albumin",
+    "CRP",
+    "cally_index"
+  ],
+  "best_params": {
+    "model__C": 0.2
+  },
+  "validation_metrics": {
+    "auroc": 0.8316885964912281,
+    "auprc": 0.6408678074790943,
+    "sensitivity": 0.7916666666666666,
+    "specificity": 0.6447368421052632,
+    "accuracy": 0.68,
+    "f1_score": 0.5428571428571428,
+    "brier_score": 0.2026924455572627,
+    "auroc_ci_low": 0.7365866264989072,
+    "auroc_ci_high": 0.9172423245614034,
+    "cv_auroc": 0.8386088370528204,
+    "cv_auprc": 0.6001454712627269
+  },
+  "exploratory_risk_thresholds": {
+    "low_upper_exclusive": 0.25,
+    "intermediate_upper_exclusive": 0.5
+  },
+  "categorical_coding": {
+    "sex": {
+      "Female": 0,
+      "Male": 1
+    },
+    "diabetes": {
+      "No": 0,
+      "Yes": 1
+    },
+    "hypertension": {
+      "No": 0,
+      "Yes": 1
+    },
+    "smoke": {
+      "No": 0,
+      "Yes": 1
+    }
+  },
+  "defaults": {
+    "age": 59.35,
+    "sex": 0,
+    "BMI": 24.9,
+    "L3_PSMI": 10.27,
+    "L3_PSMD": 36.4,
+    "L3_FI": 0.13,
+    "L3_PMD": 41.81,
+    "normal_muscle_area_percent": 72.04,
+    "central_adiposity_to_muscle": 0.8,
+    "diabetes": 0,
+    "hypertension": 0,
+    "smoke": 0,
+    "albumin": 44.4,
+    "CRP": 2.41,
+    "cally_index": 3.26
+  },
+  "feature_help": {
+    "central_adiposity_to_muscle": "Calculated as visceral adipose tissue area divided by total muscle area at the L3/center level.",
+    "L3_FI": "Calculated as intermuscular fat area divided by total muscle area at the L3 level."
+  },
+  "notes": [
+    "This calculator loads saved preprocessing and primary model objects from disk and does not retrain at runtime.",
+    "Primary model selection was performed within the training cohort under the scheme A workflow."
+  ]
+}
