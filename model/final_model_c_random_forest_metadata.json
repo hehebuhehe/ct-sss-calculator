@@ -1,0 +1,91 @@
+{
+  "model_name": "Model C Random Forest",
+  "outcome_name": "CT-defined spine-specific sarcopenia (SSS)",
+  "training_cohort_n": 630,
+  "validation_cohort_n": 100,
+  "positive_class_definition": "SSS = 1",
+  "feature_names": [
+    "age",
+    "sex",
+    "BMI",
+    "L3_PSMI",
+    "L3_PSMD",
+    "L3_FI",
+    "L3_PMD",
+    "normal_muscle_area_percent",
+    "central_adiposity_to_muscle",
+    "diabetes",
+    "hypertension",
+    "smoke",
+    "albumin",
+    "cally_index"
+  ],
+  "feature_order": [
+    "age",
+    "sex",
+    "BMI",
+    "L3_PSMI",
+    "L3_PSMD",
+    "L3_FI",
+    "L3_PMD",
+    "normal_muscle_area_percent",
+    "central_adiposity_to_muscle",
+    "diabetes",
+    "hypertension",
+    "smoke",
+    "albumin",
+    "cally_index"
+  ],
+  "dropped_missing": [],
+  "dropped_collinearity": [
+    {
+      "feature_dropped": "CRP",
+      "feature_kept": "cally_index",
+      "abs_spearman_r": 0.895682326458519
+    }
+  ],
+  "removed_candidate_features": [
+    "CRP"
+  ],
+  "best_params": {
+    "model__max_depth": 4,
+    "model__min_samples_leaf": 3
+  },
+  "validation_metrics": {
+    "auroc": 0.8256,
+    "auprc": 0.6827295557175079,
+    "sensitivity": 0.72,
+    "specificity": 0.68,
+    "accuracy": 0.69,
+    "f1_score": 0.5373134328358209,
+    "brier_score": 0.18794028394665582,
+    "auroc_ci_low": 0.7209449295486307,
+    "auroc_ci_high": 0.9195094217024041
+  },
+  "exploratory_risk_thresholds": {
+    "low_upper_exclusive": 0.25,
+    "intermediate_upper_exclusive": 0.5
+  },
+  "categorical_coding": {
+    "sex": {
+      "Female": 0,
+      "Male": 1
+    },
+    "diabetes": {
+      "No": 0,
+      "Yes": 1
+    },
+    "hypertension": {
+      "No": 0,
+      "Yes": 1
+    },
+    "smoke": {
+      "No": 0,
+      "Yes": 1
+    }
+  },
+  "notes": [
+    "CRP was a candidate predictor in the original Model C specification but was removed after collinearity screening in favor of cally_index.",
+    "The deployed web calculator loads saved preprocessing and model objects from disk and does not retrain within the application runtime."
+  ]
+}
