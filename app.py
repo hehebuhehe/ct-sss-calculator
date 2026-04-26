@@ -17,7 +17,7 @@ st.set_page_config(
     page_title="SSS Web Calculator",
     page_icon="",
     layout="wide",
-    initial_sidebar_state="expanded",
+    initial_sidebar_state="collapsed",
 )
 
 
@@ -57,25 +57,6 @@ st.title("CT-defined spine-specific sarcopenia (SSS) calculator")
 st.caption("Final deployed model: Model C Random Forest")
 st.warning("For research use only. Not for standalone clinical decision-making.")
 
-with st.sidebar:
-    st.header("Model details")
-    st.write(f"Outcome: `{metadata['outcome_name']}`")
-    st.write(f"Validation AUROC: `{metadata['validation_metrics']['auroc']:.3f}`")
-    st.write(
-        f"Validation AUPRC: `{metadata['validation_metrics']['auprc']:.3f}`  \n"
-        f"F1 score: `{metadata['validation_metrics']['f1_score']:.3f}`  \n"
-        f"Brier score: `{metadata['validation_metrics']['brier_score']:.3f}`"
-    )
-    st.write("Feature order used by the deployed model:")
-    st.code(", ".join(feature_order), language="text")
-    if metadata.get("removed_candidate_features"):
-        st.info(
-            "The candidate variable `CRP` is not required in this calculator because it was removed "
-            "from the final deployed model after collinearity screening in favor of `cally_index`."
-        )
-    st.markdown("---")
-    st.caption("Anonymous blinded-review interface: no institution, authors, logos, or external URLs.")
-
 
 defaults = {
     "age": 59.3,
@@ -107,7 +88,6 @@ with st.form("sss_calculator_form", clear_on_submit=False):
         st.subheader("Laboratory")
         albumin = st.number_input("Albumin (g/L)", min_value=20.0, max_value=60.0, value=float(defaults["albumin"]), step=0.1)
         cally_index = st.number_input("CALLY index", min_value=0.0, max_value=20.0, value=float(defaults["cally_index"]), step=0.1)
-        st.caption("CRP is not entered here because it was removed from the final deployed model during collinearity screening.")
 
     with col3:
         st.subheader("L3 CT-derived features")
